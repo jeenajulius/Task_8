@@ -1,0 +1,68 @@
+
+import pandas as pd
+import numpy as np
+import googletrans
+from translate import Translator
+from deep_translator import GoogleTranslator
+
+df=pd.read_csv("english.csv")
+
+df.head()
+
+   English words/sentences
+0	      Hi.
+1	     Run!
+2	     Run!
+3	     Who?
+4      Wow!
+
+x=df["English words/sentences"].to_list()
+len(x)
+175621
+
+'''french=[]
+spanish=[]
+german=[]
+for i in x[:5]:
+    translator1 = Translator(from_lang='en', to_lang='fr')
+    translator2 = Translator(from_lang='en', to_lang='es')
+    translator3 = Translator(from_lang='en',to_lang="German")
+    translation1 = translator1.translate("i")
+    french.append(translation1)
+    translation2=translator2.translate("i")
+    spanish.append(translation2)
+    translation3=translator3.translate("i")
+    german.append(translation3)'''
+'french=[]\nspanish=[]\ngerman=[]\nfor i in x[:5]:\n    translator1 = Translator(from_lang=\'en\', to_lang=\'fr\')\n    translator2 = Translator(from_lang=\'en\', to_lang=\'es\')\n    translator3 = Translator(from_lang=\'en\',to_lang="German")\n    translation1 = translator1.translate("i")\n    french.append(translation1)\n    translation2=translator2.translate("i")\n    spanish.append(translation2)\n    translation3=translator3.translate("i")\n    german.append(translation3)'
+ 
+ 
+x=set(x)
+x=list(x)
+print(x[:15])
+
+['We are looking for a place to stay.', "We'll need a lot of help.", 'We should ban advertising aimed towards children.', "Why don't you meet me out front in a few minutes?", 'Tom seems nice.', 'She advised him not to eat between meals.', 'I was very tired so I went to bed early.', 'He can speak Japanese.', 'He put me in touch with the kidnappers.', 'She bought a new car.', "Who's able to explain this to me?", 'A famous architect built this house.', 'No sooner had I left the house than it started to rain.', 'I believe it.', 'She gave me a shirt.']
+
+french=[]
+for i in x:
+    translated1 = GoogleTranslator(source='auto', target='fr').translate(i)
+    french.append(translated1)
+
+spanish=[]
+
+for i in x:
+    translated2 = GoogleTranslator(target='es').translate(i)
+    spanish.append(translated2)
+
+german=[]
+for i in x:
+    translated3 = GoogleTranslator(source='auto', target='de').translate(i)
+    german.append(translated3)
+
+#alternate Code
+target_languages=["de",'fr','spanish']
+translated_outputs =[]
+for j in x[:100]:
+    for target_language in target_languages:
+        translated_outputs.append(GoogleTranslator(source="auto",target=target_language).translate(j))
+ 
+ 
