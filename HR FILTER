@@ -1,0 +1,36 @@
+
+!pip install docx2txt
+import docx2txt
+Requirement already satisfied: docx2txt in /Users/jeenajulius/opt/anaconda3/lib/python3.9/site-packages (0.8)
+
+resume=docx2txt.process('resume.docx')
+Job_description= open("Job_desc.txt","w+")
+
+x=["Machine Learning,Python,BSc,Data,Natural Language Processing"]
+for i in x:
+    Job_description.write(i)
+
+Job_description.close()
+
+Job_desc = open(r"Job_desc.txt","r")
+job=Job_desc.read()
+
+print(job)
+Machine Learning,Python,BSc,Data,Natural Language Processing
+
+content=[resume,job]
+
+from sklearn.feature_extraction.text import CountVectorizer
+cv=CountVectorizer()
+matrix=cv.fit_transform(content)
+
+from sklearn.metrics.pairwise import cosine_similarity
+similarity_matrix=cosine_similarity(matrix)
+
+print(similarity_matrix)
+[[1.         0.11278641]
+ [0.11278641 1.        ]]
+
+print('Resume matches by :'+str(similarity_matrix[1][0]*100)+'%')
+Resume matches by :11.2786407689321%
+ 
