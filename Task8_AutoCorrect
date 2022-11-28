@@ -1,0 +1,36 @@
+
+from textblob import Word
+from textblob import TextBlob
+
+def correct_spelling(sentence):
+    
+    sentence = TextBlob(sentence)
+    
+    result = sentence.correct()
+    
+    print(result)
+Apple
+
+Incorrect_words=['accomodation','adress','wether','rehersal','commited','persue','occurence']
+
+Incorrect_Sents=["I am a boi",'I am having breade',' He doed not have a laptup.','Does she have a kar?']
+
+for i in Incorrect_words:
+    correct_spelling(i)
+
+accommodation
+dress
+whether
+reversal
+committed
+pursue
+occurrence
+
+for i in Incorrect_Sents:
+    correct_spelling(i)
+
+I am a boy
+I am having bread
+ He does not have a laptup.
+Does she have a war?
+ 
